@@ -9,11 +9,11 @@
 
 function ajax (options) {
 	options = options || {};
-
+	
 	options.type = options.type || 'get';
 	options.data = options.data || {};
 	options.dataType = options.dataType || 'text';
-
+	
 	let xhr = new XMLHttpRequest();
 
 	// 数据组装
@@ -55,7 +55,6 @@ function ajax (options) {
 			} else {
 				options.error && options.error()
 			}
-
 		}
 	}
 }
