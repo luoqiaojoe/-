@@ -32,6 +32,46 @@ let x;
 
 对于简单类型的数据类型（数值、字符串、布尔），等同于常量；
 
+但对于复合类型的数据（对象、数组），变量指向的内存地址，保存的只是一个指向实际数据的指针，`const`只能保证指针是固定的，而不能保证指向的数据结构不变。因此，讲一个对象声明为常量必须非常小心。
+
+```
+①
+cosnt person = {};
+
+person.name = 'Tom';
+console.log(person.name); // Tom
+
+②
+const arr = [];
+arr.push('hello'); // 可行
+arr.length = 0; // 可行
+
+arr = ['world']; // 报错
+```
+用`const`声明对象或数组后，对其进行属性的操作是可以的，但再次进行赋值则不行。
+
+
+如果真的想将对象冻结，可使用`Object.freeze`方法。
+
+```
+const person = Object.freeze({});
+
+person.name = 'Tom'; // 常规模式下，不起作用；严格模式下报错
+```
+
+除了将对象本身冻结，对象的属性也应该冻结。
+
+```
+let constantize = (obj) => {
+    Object.freeze(obj);
+    Object.keys(obj).forEach( (key, value)=>{
+        if(typeof obj[key] === 'object'){
+            Object.freeze(obj(key))
+        }
+    })
+}
+```
+
 ### ES6 声明变量的6种方法
 
 ES5 只有两种声明变量的方法：`var`命令和`function`，命令。
