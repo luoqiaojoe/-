@@ -64,9 +64,9 @@ person.name = 'Tom'; // 常规模式下，不起作用；严格模式下报错
 ```
 let constantize = (obj) => {
     Object.freeze(obj);
-    Object.keys(obj).forEach( (key, value)=>{
+    Object.keys(obj).forEach( (key, index)=>{
         if(typeof obj[key] === 'object'){
-            Object.freeze(obj(key))
+            constantize( obj(key) )
         }
     })
 }
