@@ -5,9 +5,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="http://localhost:9527" method="post">
-        <p>姓名：<input type="text" name="name"></p>
+    <form action="http://localhost:9527" method="post" enctype="multipart/form-data">
+        <p>姓名：<input type="text" name="user"></p>
         <p>年龄：<input type="number" name="age"></p>
+        <p>年龄：<input type="file" name="file"></p>
         <input type="submit" value="提交">
     </form>
 </body>

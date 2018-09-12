@@ -9,13 +9,15 @@ let httpServer = http.createServer( (req, res)=>{
 
     let arr = [];
 
-    req.on('data', chunk=>{ //这种方法是有问题的
+    req.on('data', chunk=>{
         arr.push(chunk)
     });
 
     req.on('end', ()=>{
-        console.log(arr); // Buffer数据
-        console.log(arr.toString()); // 只有在确认arr是文本数据的时候，才能toString()
+
+        let data = Buffer.concat(arr);
+
+        console.log(data.toString());
 
         res.write('ok');
         res.end();
@@ -27,3 +29,16 @@ let httpServer = http.createServer( (req, res)=>{
 httpServer.listen(9527, _=>{
     console.log('http server is listening at post 9527');
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
