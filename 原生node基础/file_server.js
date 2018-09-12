@@ -17,6 +17,8 @@ let httpServer = http.createServer( (req, res)=>{
 
         let data = Buffer.concat(arr);
 
+        console.log(data);
+        console.log('=========================================');
         console.log(data.toString());
 
         res.write('ok');
