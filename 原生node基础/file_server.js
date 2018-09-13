@@ -38,7 +38,7 @@ let httpServer = http.createServer( (req, res)=>{
                 // 3. 去掉数组每一项头尾的的`\r\n`
                 arr = arr.map( buffer=>buffer.slice(2, buffer.length-2));
 
-                // 4. 数组每一项利用第一次出现的`\r\n\r\n`分割
+                // 4. 利用第一次出现的`\r\n\r\n`分割数组中的每一项
                 arr.forEach( buffer=>{
                     let n = buffer.indexOf('\r\n\r\n');
 
@@ -54,9 +54,9 @@ let httpServer = http.createServer( (req, res)=>{
                         // Content-Disposition: form-data; name="user"
 
                         let name = disposition.split('; ')[1];
-
                         name = parseEncodedStr(name);    // 去掉"user"的双引号
-                        content = content.toString();
+
+                        content = content.toString();   //  普通数据可以直接toString()
 
                         post[name] = content;
 
